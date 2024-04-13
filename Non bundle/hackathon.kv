@@ -1,0 +1,917 @@
+#kivy: 2.1.0
+
+
+<StartScreen>
+    label: label
+    ready_input: ready_input
+    start: start
+    notice: notice
+    Image:
+        source: "unnamed.png"
+        allow_stretch: True
+        keep_ratio: False
+        FloatLayout:
+            size: root.size
+            Label:
+                id: title
+                text: 'IMPORTANT INFO'
+                color: 0, 0, 0.4, 1
+                background_color: 0, 0, 0, 0
+                font_size: self.parent.width * 0.05
+                size_hint: None, None
+                size: self.parent.width * 0.5, self.parent.height * 0.1
+                text_size: self.width, self.height
+                center_x: self.parent.width * 0.55
+                top: self.parent.height
+            Label:
+                id: label
+                text: ''
+                background_color: 0, 0, 0, 0
+                color: 0, 0, 0.502, 1
+                font_size: self.parent.width * 0.018
+                size_hint: None, None
+                size: self.parent.width * 0.85, self.parent.height * 0.8
+                text_size: self.width, self.height
+                center_x: self.parent.width * 0.5
+                y: self.parent.height * 0.2
+            TextInput:
+                id: ready_input
+                multiline: False
+                size_hint: None, None
+                size: self.parent.width * 0.4, self.parent.height * 0.05
+                center_x: self.parent.width * 0.5
+                y: self.parent.height * 0.1
+            Button:
+                id: start
+                text: "SUBMIT"
+                bold: True
+                font_size: self.parent.width * 0.03
+                on_press: root.start_game()
+                background_color: 0, 0, 0, 0
+                color: 0, 0, 0.502, 1
+                size_hint: None, None
+                size: self.parent.width * 0.3, self.parent.height * 0.08
+                right: self.parent.width
+                y: 0
+            Notice:
+                id: notice
+
+
+<Welcome>
+    start: start
+    Label:
+        background_color: 0, 1, 1, 1
+        allow_stretch: True
+        keep_ratio: False
+        FloatLayout:
+            size: self.parent.size
+            Label:
+                text: 'Cultural Hackathon'
+                color: 0, 1, 1, 1
+                background_color: 0, 0, 0, 0
+                font_size: self.parent.width * 0.05
+                size_hint: None, None
+                size: self.parent.width * 0.5, self.parent.height * 0.2
+                center_x: self.parent.width * 0.5
+                top: self.parent.height * 0.85
+            Button:
+                id: start
+                text: 'START'
+                background_color: 0, 0, 0, 0
+                font_size: self.parent.width * 0.02
+                on_press: root.start_time()
+                size_hint: None, None
+                size: self.parent.width * 0.3, self.parent.height * 0.1
+                center_x: self.parent.width * 0.5
+                top: self.parent.height * 0.45
+
+
+
+<Inventory>
+    inventory_button: inventory_button
+    inventory_background: inventory_background
+    inventory_space: inventory_space
+    Image:
+        source: 'inventory_button.png'
+        allow_stretch: True
+        id: inventory_button
+        size_hint: None, None
+        pos_hint: None, None
+        size: self.parent.width * 0.2, self.parent.height * 0.05
+        center_x: self.parent.width/2
+        y: 0
+        Button:
+            opacity: 0
+            size: self.parent.size
+            pos: self.parent.pos
+            on_press: root.open_inventory()
+    Image:
+        id: inventory_background
+        allow_stretch: True
+        keep_ratio: False
+        source: 'inventory.png'
+        size_hint: None, None
+        pos_hint: None, None
+        size: self.parent.width, self.parent.height * 0.2
+        pos: 0, -self.parent.height * 0.2
+        StackLayout:
+            id: inventory_space
+            size: self.parent.size
+            pos: self.parent.pos
+            padding: self.parent.height * 0.15
+            spacing: 7
+
+
+<BackToMenuButton>
+    Button:
+        on_press: app.root.current = 'game'
+        size_hint: None, None
+        size: self.parent.width * 0.05, self.parent.width * 0.05
+        x: self.parent.width * 0.02
+        top: self.parent.height * 0.98
+        text: "BACK"
+
+
+<Notice>
+    text: ''
+    color: 1, 0, 0, 1
+    font_size: self.parent.width*0.03
+    size_hint: None, None
+    x: self.parent.width * 0.05
+    bottom: self.parent.height * 0.2
+    size: self.texture_size
+    text_size: self.parent.width * 0.35, None
+
+
+<Poster>
+    Button:
+        on_press: app.root.current = 'poster_event'
+        opacity: 0
+        size: self.parent.width*0.10729, self.parent.height * 0.2
+        pos: self.parent.width*0.2427, self.parent.height*0.4009
+
+
+<PosterEvent>
+    Image:
+        source: 'wall.png'
+        size: self.parent.size
+        allow_stretch: True
+        keep_ratio: False
+    Image:
+        source: 'poster.png'
+        allow_stretch: True
+        size: self.parent.size
+        keep_ratio: True
+        Button:
+            text: 'BACK'
+            size: self.parent.width * 0.05, self.parent.width * 0.05
+            x: self.parent.width * 0.02
+            top: self.parent.height * 0.98
+            on_press: app.root.current = "room1"
+
+
+<Bed>
+    Button:
+        on_press: root.bed_click()
+        opacity: 0
+        size: self.parent.width * 0.43698, self.parent.height * 0.06
+        pos: self.parent.width*0.03584, self.parent.height*0.151
+    Button:
+        on_press: root.bed_click()
+        opacity: 0
+        size: self.parent.width * 0.4135, self.parent.height * 0.019
+        pos: self.parent.width*0.035938, self.parent.height*0.21
+    Button:
+        on_press: root.bed_click()
+        opacity: 0
+        size: self.parent.width * 0.097, self.parent.height * 0.02908
+        pos: self.parent.width*0.05521, self.parent.height*0.23
+
+
+<CaveBookEvent>
+    background: background
+    cave_input: cave_input
+    submit_button: submit_button
+    notice: notice
+    Image:
+        id: background
+        source: 'cavebookstart.png'
+        allow_stretch: True
+        size: self.parent.size
+        keep_ratio: False
+        Button:
+            text: 'BACK'
+            size: self.parent.width * 0.05, self.parent.width * 0.05
+            x: self.parent.width * 0.02
+            top: self.parent.height * 0.98
+            on_press: app.root.current = "room1"
+        TextInput:
+            id: cave_input
+            multiline: False
+            size_hint: None, None
+            font_size: self.parent.width * 0.01
+            size: self.parent.width * 0.13, self.parent.height * 0.03
+            pos: self.parent.width * 0.84523, self.parent.height * 0.15933
+        Button:
+            id: submit_button
+            text: "SUBMIT"
+            bold: True
+            font_size: self.parent.width * 0.03
+            color: 0.557, 0.298, 0.1412, 1
+            background_color: 0, 0, 0, 0
+            on_press: root.check_cave_answer()
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.08
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.03
+        Notice:
+            id: notice
+<CaveBook>
+    cavebook_button: cavebook_button
+    Button:
+        id: cavebook_button
+        on_press: app.root.current = 'cave_book_event'
+        opacity: 0
+        size: self.parent.width*0.036, self.parent.height * 0.13
+        pos: self.parent.width*0.078, self.parent.height*0.67
+
+
+<Door>
+    Button:
+        on_press: root.door_click()
+        opacity: 0
+        size: self.parent.width * 0.208, self.parent.height * 0.427
+        pos: self.parent.width*0.4132, self.parent.height*0.232
+    Button:
+        on_press: root.door_click()
+        opacity: 0
+        size: self.parent.width * 0.1719, self.parent.height * 0.0214
+        pos: self.parent.width*0.4505, self.parent.height*0.21
+    Button:
+        on_press: root.door_click()
+        opacity: 0
+        size: self.parent.width * 0.1495, self.parent.height * 0.0296
+        pos: self.parent.width*0.4719, self.parent.height*0.18
+
+
+<BedCrystal1>
+    Button:
+        on_press: root.bed_crystal1()
+        opacity: 0
+        size: self.parent.width*0.0214, self.parent.height * 0.05
+        pos: self.parent.width*0.0854, self.parent.height*0.53
+<BedCrystal2>
+    Button:
+        on_press: root.bed_crystal2()
+        opacity: 0
+        size: self.parent.width*0.0218, self.parent.height * 0.06
+        pos: self.parent.width*0.1219, self.parent.height*0.49
+<BedCrystal3>
+    Button:
+        on_press: root.bed_crystal3()
+        opacity: 0
+        size: self.parent.width*0.0218, self.parent.height * 0.049
+        pos: self.parent.width*0.143, self.parent.height*0.56
+
+
+<MythPage1>
+    page_input: page_input
+    submit_button: submit_button
+    notice: notice
+    Image:
+        source: 'mythpage1.png'
+        allow_stretch: True
+        size: self.parent.size
+        keep_ratio: False
+        Button:
+            text: 'BACK'
+            size: self.parent.width * 0.05, self.parent.width * 0.05
+            x: self.parent.width * 0.02
+            top: self.parent.height * 0.98
+            on_press: app.root.current = "room1"
+        TextInput:
+            id: page_input
+            multiline: False
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.05
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.1
+        Button:
+            id: submit_button
+            text: "SUBMIT"
+            bold: True
+            font_size: self.parent.width * 0.03
+            color: 0.812, 0.5569, 0.376, 1
+            background_color: 0, 0, 0, 0
+            on_press: root.check_page1_answer('myth 1')
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.08
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.03
+        Notice:
+            id: notice
+        Button:
+            on_press: app.root.current = 'myth_page2'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.9114, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+<MythPage2>
+    page_input: page_input
+    submit_button: submit_button
+    notice: notice
+    Image:
+        source: 'mythpage2.png'
+        allow_stretch: True
+        size: self.parent.size
+        keep_ratio: False
+        Button:
+            text: 'BACK'
+            size: self.parent.width * 0.05, self.parent.width * 0.05
+            x: self.parent.width * 0.02
+            top: self.parent.height * 0.98
+            on_press: app.root.current = "room1"
+        TextInput:
+            id: page_input
+            multiline: False
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.05
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.1
+        Button:
+            id: submit_button
+            text: "SUBMIT"
+            bold: True
+            font_size: self.parent.width * 0.03
+            color: 0.812, 0.5569, 0.376, 1
+            background_color: 0, 0, 0, 0
+            on_press: root.check_page2_answer()
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.08
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.03
+        Notice:
+            id: notice
+        Button:
+            on_press: app.root.current = 'myth_page1'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.0144, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+        Button:
+            on_press: app.root.current = 'myth_page3'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.9114, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+<MythPage3>
+    page_input: page_input
+    submit_button: submit_button
+    notice: notice
+    Image:
+        source: 'mythpage3.png'
+        allow_stretch: True
+        size: self.parent.size
+        keep_ratio: False
+        Button:
+            text: 'BACK'
+            size: self.parent.width * 0.05, self.parent.width * 0.05
+            x: self.parent.width * 0.02
+            top: self.parent.height * 0.98
+            on_press: app.root.current = "room1"
+        TextInput:
+            id: page_input
+            multiline: False
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.05
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.1
+        Button:
+            id: submit_button
+            text: "SUBMIT"
+            bold: True
+            font_size: self.parent.width * 0.03
+            color: 0.812, 0.5569, 0.376, 1
+            background_color: 0, 0, 0, 0
+            on_press: root.check_page3_answer()
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.08
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.03
+        Notice:
+            id: notice
+        Button:
+            on_press: app.root.current = 'myth_page2'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.0144, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+        Button:
+            on_press: app.root.current = 'myth_page4'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.9114, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+<MythPage4>
+    page_input: page_input
+    submit_button: submit_button
+    notice: notice
+    Image:
+        source: 'mythpage4.png'
+        allow_stretch: True
+        size: self.parent.size
+        keep_ratio: False
+        Button:
+            text: 'BACK'
+            size: self.parent.width * 0.05, self.parent.width * 0.05
+            x: self.parent.width * 0.02
+            top: self.parent.height * 0.98
+            on_press: app.root.current = "room1"
+        TextInput:
+            id: page_input
+            multiline: False
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.05
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.1
+        Button:
+            id: submit_button
+            text: "SUBMIT"
+            bold: True
+            font_size: self.parent.width * 0.03
+            color: 0.812, 0.5569, 0.376, 1
+            background_color: 0, 0, 0, 0
+            on_press: root.check_page4_answer()
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.08
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.03
+        Notice:
+            id: notice
+        Button:
+            on_press: app.root.current = 'myth_page3'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.0144, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+        Button:
+            on_press: app.root.current = 'myth_page5'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.9114, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+<MythPage5>
+    page_input: page_input
+    submit_button: submit_button
+    notice: notice
+    Image:
+        source: 'mythpage5.png'
+        allow_stretch: True
+        size: self.parent.size
+        keep_ratio: False
+        Button:
+            text: 'BACK'
+            size: self.parent.width * 0.05, self.parent.width * 0.05
+            x: self.parent.width * 0.02
+            top: self.parent.height * 0.98
+            on_press: app.root.current = "room1"
+        TextInput:
+            id: page_input
+            multiline: False
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.05
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.1
+        Button:
+            id: submit_button
+            text: "SUBMIT"
+            bold: True
+            font_size: self.parent.width * 0.03
+            color: 0.812, 0.5569, 0.376, 1
+            background_color: 0, 0, 0, 0
+            on_press: root.check_page5_answer()
+            size_hint: None, None
+            size: self.parent.width * 0.4, self.parent.height * 0.08
+            center_x: self.parent.width * 0.75
+            y: self.parent.height * 0.03
+        Notice:
+            id: notice
+        Button:
+            on_press: app.root.current = 'myth_page4'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.0144, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+        Button:
+            on_press: app.root.current = 'myth_page6'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.9114, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+<MythPage6>
+    notice: notice
+    Image:
+        source: 'mythpagemissing.png'
+        allow_stretch: True
+        size: self.parent.size
+        keep_ratio: False
+        Button:
+            text: 'BACK'
+            size: self.parent.width * 0.05, self.parent.width * 0.05
+            x: self.parent.width * 0.02
+            top: self.parent.height * 0.98
+            on_press: app.root.current = "room1"
+        Notice:
+            id: notice
+        Button:
+            on_press: app.root.current = 'myth_page5'
+            size_hint: None, None
+            opacity: 0
+            pos: self.parent.width * 0.0144, self.parent.height * 0.45
+            size: self.parent.width * 0.0742, self.parent.height * 0.09
+<MythBook>
+    Button:
+        on_press: app.root.current = 'myth_page1'
+        opacity: 0
+        size: self.parent.width*0.107, self.parent.height * 0.08
+        pos: self.parent.width*0.793, self.parent.height*0.34
+
+
+<Room1>
+    background: background
+    cavebook: cavebook
+    Image:
+        id: background
+        source: "bedroomfinal.png"
+        allow_stretch: True
+        keep_ratio: False
+        FloatLayout:
+            size: self.parent.size
+            BackToMenuButton:
+            CaveBook:
+                id: cavebook
+            Door:
+            Poster:
+            Bed:
+            BedCrystal1:
+            BedCrystal2:
+            BedCrystal3:
+            MythBook:
+            Inventory:
+                id: inventory
+            Notice:
+                id: notice
+
+
+<Treasure>
+    treasure:treasure
+    treasure_button: treasure_button
+    Image:
+        id: treasure
+        source: 'treasurestart.png'
+        allow_stretch: True
+        keep_ratio: True
+        size: self.parent.width*0.06888, self.parent.height * 0.0615
+        pos: self.parent.width*0.62194, self.parent.height*0.22
+        Button:
+            id: treasure_button
+            opacity: 0
+            pos: self.parent.pos
+            size: self.parent.size
+            on_press: root.mine_treasure()
+
+
+<DrippingWater>
+    water_drop: water_drop
+    water_button: water_button
+    AnchorLayout:
+        anchor_y: 'top'
+        size: self.parent.width*0.012, self.parent.height * 0.04
+        center_x: self.parent.width*0.205
+        top: self.parent.height*0.64
+        Image:
+            id: water_drop
+            source: "waterdrop.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 1, 1
+    Button:
+        id: water_button
+        on_press: root.get_water()
+        opacity: 0
+        size: self.parent.width*0.012, self.parent.height * 0.1
+        center_x: self.parent.width*0.205
+        top: self.parent.height*0.64
+
+
+<CaveCrystal1>
+    Button:
+        on_release: root.sound_cave_1()
+        opacity: 0
+        size: self.parent.width*0.0432, self.parent.height * 0.1472
+        pos: self.parent.width*0.2286, self.parent.height*0.09074
+<CaveCrystal2>
+    Button:
+        on_release: root.sound_cave_2()
+        opacity: 0
+        size: self.parent.width*0.05052, self.parent.height * 0.1806
+        pos: self.parent.width*0.2708, self.parent.height*0.07963
+<CaveCrystal3>
+    Button:
+        on_release: root.sound_cave_3()
+        opacity: 0
+        size: self.parent.width*0.03542, self.parent.height * 0.1269
+        pos: self.parent.width*0.3219, self.parent.height*0.09907
+
+
+<Vines>
+    vines: vines
+    Button:
+        id: vines
+        background_normal: 'vinebookstart.png'
+        on_press: root.get_vine_book()
+        disabled: True
+        opacity: 0
+        size: self.parent.width*0.078125, self.parent.height * 0.2037
+        pos: self.parent.width*0.90833, self.parent.height*0.70925
+
+
+<Room2>
+    background: background
+    water_drop: water_drop
+    vines: vines
+    Image:
+        id: background
+        source: "cavefinal.png"
+        allow_stretch: True
+        keep_ratio: False
+        FloatLayout:
+            size: self.parent.size
+            BackToMenuButton:
+            Treasure:
+            DrippingWater:
+                id: water_drop
+            CaveCrystal1:
+            CaveCrystal3:
+            CaveCrystal2:
+            Vines:
+                id: vines
+            Inventory:
+                id: inventory
+            Notice:
+                id: notice
+
+
+<Shovel>
+    shovel_head: shovel_head
+    shovel_body: shovel_body
+    shovel_tail: shovel_tail
+    Button:
+        id: shovel_head
+        on_press: root.get_shovel()
+        opacity: 0
+        size: self.parent.width * 0.07083, self.parent.height * 0.09907
+        pos: self.parent.width * 0.3297, self.parent.height * 0.03426
+    Button:
+        id: shovel_body
+        on_press: root.get_shovel()
+        opacity: 0
+        size: self.parent.width * 0.2094, self.parent.height * 0.03148
+        pos: self.parent.width * 0.3995, self.parent.height * 0.06759
+    Button:
+        id: shovel_tail
+        on_press: root.get_shovel()
+        opacity: 0
+        size: self.parent.width * 0.03073, self.parent.height * 0.06574
+        pos: self.parent.width * 0.6099, self.parent.height * 0.05
+
+
+<SignEvent>
+    background: background
+    Image:
+        id: background
+        source: 'signwall.png'
+        size: self.parent.size
+        allow_stretch: True
+        keep_ratio: False
+    Image:
+        source: 'sign.png'
+        allow_stretch: True
+        size: self.parent.size
+        keep_ratio: True
+        Button:
+            text: 'BACK'
+            size: self.parent.width * 0.05, self.parent.width * 0.05
+            x: self.parent.width * 0.02
+            top: self.parent.height * 0.98
+            on_press: app.root.current = "room3"
+
+
+<Sign>
+    Button:
+        on_press: app.root.current = 'sign_event'
+        opacity: 0
+        size: self.parent.width * 0.149, self.parent.height * 0.1
+        pos: self.parent.width * 0.0901, self.parent.height * 0.2667
+    Button:
+        on_press: app.root.current = 'sign_event'
+        opacity: 0
+        size: self.parent.width * 0.03021, self.parent.height * 0.1
+        pos: self.parent.width * 0.1495, self.parent.height * 0.1657
+
+
+<Tree>
+    Button:
+        id: tree1
+        on_press: root.water_tree()
+        opacity: 0
+        size: self.parent.width * 0.66458, self.parent.height * 0.48148
+        pos: self.parent.width * 0.16458, self.parent.height * 0.51852
+    Button:
+        id: tree2
+        on_press: root.water_tree()
+        opacity: 0
+        size: self.parent.width * 0.1703, self.parent.height * 0.26762
+        pos: self.parent.width * 0.4297, self.parent.height * 0.2509
+    Button:
+        id: tree3
+        on_press: root.water_tree()
+        opacity: 0
+        size: self.parent.width * 0.040625, self.parent.height * 0.15093
+        pos: self.parent.width * 0.5995, self.parent.height * 0.36759
+    Button:
+        id: tree4
+        on_press: root.water_tree()
+        opacity: 0
+        size: self.parent.width * 0.3495, self.parent.height * 0.0509
+        pos: self.parent.width * 0.3401, self.parent.height * 0.2
+    Button:
+        id: tree5
+        on_press: root.water_tree()
+        opacity: 0
+        size: self.parent.width * 0.1885, self.parent.height * 0.092593
+        pos: self.parent.width * 0.4198, self.parent.height * 0.1074
+    Button:
+        id: tree6
+        on_press: root.water_tree()
+        opacity: 0
+        size: self.parent.width * 0.05365, self.parent.height * 0.082407
+        pos: self.parent.width * 0.608, self.parent.height * 0.11851
+
+
+<Room3>
+    background: background
+    tree: tree
+    Image:
+        id: background
+        source: "deadtreefinal.png"
+        allow_stretch: True
+        keep_ratio: False
+        FloatLayout:
+            size: self.parent.size
+            BackToMenuButton:
+            Shovel:
+            Sign:
+                id: sign
+            Tree:
+                id: tree
+            Inventory:
+                id: inventory
+            Notice:
+                id: notice
+
+
+<MissingRoom1Book>
+    empty_spot: empty_spot
+    Button:
+        id: empty_spot
+        on_press: root.fill_room1_book()
+        opacity: 0
+        size_hint: None, None
+        size: self.parent.width * 0.09222, self.parent.height * 0.0145
+        pos: self.parent.width * 0.24944, self.parent.height * 0.79828
+<MissingRoom2Book>
+    empty_spot2: empty_spot2
+    Button:
+        id: empty_spot2
+        on_press: root.fill_room2_book()
+        opacity: 0
+        size_hint: None, None
+        size: self.parent.width * 0.09222, self.parent.height * 0.0145
+        pos: self.parent.width * 0.6511, self.parent.height * 0.2847
+
+
+<ColouredBookRow>
+    Button:
+        on_press: root.crystal_hint()
+        background_normal: 'soundpuzzlebookrow.png'
+        background_down: 'soundpuzzlebookrow.png'
+        size_hint: None, None
+        size: self.parent.width * 0.3656, self.parent.height * 0.0092
+        pos: 0, self.parent.height * 0.34909
+
+
+<MissingPage>
+    missing_page_button: missing_page_button
+    Button:
+        id: missing_page_button
+        on_press: root.get_missing_page()
+        opacity: 0
+        size_hint: None, None
+        size: self.parent.width * 0.08, self.parent.height * 0.019899
+        pos: self.parent.width * 0.7, self.parent.height * 0.018283
+
+
+<Room4>
+    book_1: book_1
+    book_2: book_2
+    background: background
+    ScrollView:
+        do_scroll_x: False
+        scroll_wheel_distance: 70
+        scroll_wheel_timeout: 100
+        Image:
+            id: background
+            source: 'libraryfinal.png'
+            size_hint: None, None
+            allow_stretch: True
+            width: self.parent.width
+            height: self.parent.width/self.image_ratio
+            FloatLayout:
+                size: self.parent.size
+                MissingRoom1Book:
+                    id: book_1
+                MissingRoom2Book:
+                    id: book_2
+                ColouredBookRow:
+                MissingPage:
+    BackToMenuButton:
+    Inventory:
+        id: inventory
+    Notice:
+        id: notice
+
+
+<EscapeGame>
+    room_1: room_1
+    room_2: room_2
+    room_3: room_3
+    room_4: room_4
+    GridLayout:
+        cols: 2
+        rows: 2
+        Button:
+            id: room_1
+            background_normal: "bedroomfinal.png"
+            on_press: app.root.current = 'room1'
+        Button:
+            id: room_2
+            background_normal: "cavefinal.png"
+            on_press: app.root.current = 'room2'
+        Button:
+            id: room_4
+            background_normal: "room4final.png"
+            on_press: app.root.current = 'room4'
+        Button:
+            id: room_3
+            background_normal: "deadtreefinal.png"
+            on_press: app.root.current = 'room3'
+
+
+<WinScreen>
+    thanks: thanks
+    time: time
+    Image:
+        source: "unnamed.png"
+        allow_stretch: True
+        keep_ratio: False
+        FloatLayout:
+            size: self.parent.size
+            Label:
+                text: 'Cultural Hackathon'
+                color: 0, 0, 0.4, 1
+                background_color: 0, 0, 0, 0
+                font_size: self.parent.width * 0.05
+                size_hint: None, None
+                size: self.parent.width * 0.5, self.parent.height * 0.2
+                center_x: self.parent.width * 0.5
+                top: self.parent.height * 0.85
+            Label:
+                id: thanks
+                text: ''
+                color: 0, 0, 0.502, 1
+                background_color: 0, 0, 0, 0
+                font_size: self.parent.height * 0.03
+                size_hint: None, None
+                size: self.parent.width * 0.4, self.parent.height * 0.4
+                center_x: self.parent.width * 0.5
+                y: self.parent.height * 0.05
+            Label:
+                id: time
+                color: 0, 0, 0.502, 1
+                background_color: 0, 0, 0, 0
+                font_size: self.parent.height * 0.03
+                size_hint: None, None
+                size: self.parent.width * 0.3, self.parent.height * 0.1
+                center_x: self.parent.width * 0.5
+                y: self.parent.height * 0.45
